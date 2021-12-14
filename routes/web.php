@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Admin 
+Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
+    Route::get('dashboard', ['as' => 'index', 'uses' => 'Auth\HomeController@index']);
+    Route::get('add-product', ['as' => 'addProduct', 'uses' => 'ProductController@addProduct']);
+    Route::get('products', ['as' => 'productList', 'uses' => 'ProductController@productView']);
+});
+
+
+
+Route::get('login',['as'=>'login','uses'=>'Auth\UserController@login']);
+Route::get('register','Auth\UserController@register');
+
+
