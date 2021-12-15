@@ -3,6 +3,7 @@
 namespace App\Repositaries;
 use Illuminate\Support\Facades\Hash;
 use App\Model\Product;
+use DB;
 
 class storeProductRepository {
 
@@ -32,13 +33,48 @@ class storeProductRepository {
     public function all(){
         try {
 
-            //fetching prodcts with condition
-            $products = Product::paginate(20);
-            return $products;
+         return Product::paginate(20);
 
         } catch (\Exception $e) {
             info($e->getMessage().'-'.$e->getLine());
         } 
+    }
+
+    public function selectedDelete($ids){
+        try {
+
+            DB::table("products")->whereIn('id',$ids)->delete();
+            return response()->json(
+                ['success'=>"Products Deleted successfully."]
+            );
+
+        } catch (\Exception $e) {
+            info($e->getMessage().'-'.$e->getLine());
+        }
+    }
+
+    public function delete($id){
+        try {
+
+            Product::where('id',$id)->delete();
+            return response()->json(
+                ['success'=>"Products Deleted successfully."]
+            );
+
+        } catch (\Exception $e) {
+            info($e->getMessage().'-'.$e->getLine());
+        }
+    }
+
+
+    public function update($request){
+        try {
+            
+            
+        } catch (\Exception $e) {
+            info($e->getMessage().'-'.$e->getLine());
+        }
+
     }
 
 

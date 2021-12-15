@@ -38,7 +38,9 @@ class ProductController extends Controller
 
 
     public function addProduct(){
+
         return view('admin.store-product');
+
     }
 
 
@@ -47,6 +49,24 @@ class ProductController extends Controller
         return $this->storeProductRepository->selectedDelete(explode(",",$request->ids));
     }
 
+    
+    public function findById($id){
+
+        $product = Product::findorfail($id);
+        return view(
+            'admin.update-product',
+            [
+                'data' => $product
+            ]
+        );
+
+    }
+    
+    public function update(Request $request){
+
+        return $this->storeProductRepository->update($request->all());
+
+    }
 
     public function destory($id){
 

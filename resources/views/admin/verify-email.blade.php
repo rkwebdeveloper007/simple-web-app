@@ -10,7 +10,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href=""><b>Lo</b>go</a>
+    <a href=""><b>Verify account</b></a>
   </div>
 
   <div class="card">

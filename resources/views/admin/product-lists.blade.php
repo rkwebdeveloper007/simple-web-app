@@ -41,7 +41,10 @@
                         <td>{{++$key}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->upc}}</td>
-                        <td>{{$product->image}}</td>
+                        <td>
+                        <img src="{{ env('IMAGE_URL').$product->image }}"  class="img-circle img-size-32 mr-2">
+                            
+                        </td>
                         <td>{{$product->price}}</td>
                         <td>
                            @if($product->status === 'Active')
@@ -51,7 +54,8 @@
                            @endif
                         <td>
                         <td>
-                           <a  style="color:white" data-specific_id="{{route('admin.deleteProduct',['id'=>$product->id])}}" id="{{$product->id}}" class="delete_product btn btn-danger" >delete</a>
+                            <a href="{{route('admin.findById',['id'=>$product->id])}}" class="btn btn-success" style="color:white" >Update</a>
+                            <a style="color:white" data-specific_id="{{route('admin.deleteProduct',['id'=>$product->id])}}" id="{{$product->id}}" class="delete_product btn btn-danger" >delete</a>
                         </td>
                      </tr>
                      @endforeach

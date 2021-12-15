@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|max:80',
             'price' => ['required', 'integer'],
-            'upc' => ['required', 'string', 'min:5'],
+            'upc' => ['required', 'string','unique:products','min:5'],
             'status' => 'required|in:Active,Inactive',
             'image' => 'mimes:jpeg,jpg,png|required|max:10000'
         ]; 
