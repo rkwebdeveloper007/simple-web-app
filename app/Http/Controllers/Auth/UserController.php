@@ -63,9 +63,9 @@ class UserController extends Controller
                         ->where('email',$request->email)->first();
        if($userData){
             dispatch(new VerifyUserEmail($userData));
-            return redirect('login')->with('status', 'Email sent successfully');
+            return redirect('login')->with('success', 'Email sent successfully');
        } else{
-            return redirect('register')->with('status', 'you are not registered');
+            return redirect('register')->with('error', 'you are not registered');
        }
         
     }

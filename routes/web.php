@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function(){
         Route::delete('delete-selected-product', ['as' => 'selectedProductDelete', 'uses' => 'ProductController@selectedProductsDelete']);
         Route::post('store-product', ['as' => 'storeProduct', 'uses' => 'ProductController@storeProducts']);
         Route::get('find-product/{id}', ['as' => 'findById', 'uses' => 'ProductController@findById']);
-        Route::get('update-product', ['as' => 'updateProduct', 'uses' => 'ProductController@update']);
+        Route::post('update-product', ['as' => 'updateProduct', 'uses' => 'ProductController@update']);
         Route::post('delete-product/{id}', ['as' => 'deleteProduct', 'uses' => 'ProductController@destory']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\UserController@logout']);
     });

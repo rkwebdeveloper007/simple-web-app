@@ -6,12 +6,13 @@
               {{ session('status') }}
           </div>
       @endif
-   <form action="{{route('admin.storeProduct')}}" method="post" enctype="multipart/form-data">
+   <form action="{{route('admin.updateProduct')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="row">
          <div class="col">
             <div class="mb-3">
                <label for="exampleFormControlInput1" class="form-label">Name</label>
+               <input type="hidden" value="{{$data->id ?? ''}}" name="id">
                <input type="text" class="form-control" value="{{$data->name ?? ''}}" name="name" id="exampleFormControlInput1" placeholder="Name">
                @if ($errors->has('name'))
                <span class="text-danger">{{ $errors->first('name') }}</span>

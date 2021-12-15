@@ -16,9 +16,14 @@
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new user</p>
-      @if (session('status'))
+      @if (session('success'))
+          <div class="alert alert-success">
+              {{ session('success') }}
+          </div>
+      @endif
+      @if (session('error'))
           <div class="alert alert-danger">
-              {{ session('status') }}
+              {{ session('error') }}
           </div>
       @endif
       <form method="post" action="{{ route('userRegister') }}" >

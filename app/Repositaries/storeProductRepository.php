@@ -69,8 +69,23 @@ class storeProductRepository {
 
     public function update($request){
         try {
-            
-            
+            if($request->hasFile('image')){
+                $image = $request['upc'].'.'.$request['image']->extension();  
+                $request['image']->move(public_path('admin/images/product_images'), $image);
+            } else {
+                $image = $request->old_image;
+            }
+
+            $product = Product::find($request->id);
+            $product->name      = $request['name'];
+            $product->price     = $request['price'];
+            $product->upc       = $request['upc'];
+            $product->status    = $request['status'];
+            $product->image     = $image;
+            $product->save();
+
+            return redirect()->route('admin.addProduct')->with('status', 'Product update Successfully');
+
         } catch (\Exception $e) {
             info($e->getMessage().'-'.$e->getLine());
         }

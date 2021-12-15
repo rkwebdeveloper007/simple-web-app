@@ -32,7 +32,7 @@ class ProductController extends Controller
 
     public function storeProducts(StoreProductRequest $request){
 
-        return $this->storeProductRepository->store($request->all());
+        return $this->storeProductRepository->store($request);
  
      }
 
@@ -64,7 +64,7 @@ class ProductController extends Controller
     
     public function update(Request $request){
 
-        return $this->storeProductRepository->update($request->all());
+        return $this->storeProductRepository->update($request);
 
     }
 

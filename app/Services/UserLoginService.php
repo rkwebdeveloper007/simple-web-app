@@ -13,7 +13,9 @@ class UserLoginService {
             ])) {
             return redirect()->route('admin.dashboard');
         } else {
-            return redirect()->route('login')->with(['error'=>'Credential does not match']);
+            return redirect()->route('login')->with(
+                ['error'=>'Credential does not match']
+            );
         }
     }
 
