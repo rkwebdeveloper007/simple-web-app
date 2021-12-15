@@ -45,7 +45,7 @@ class VerifyUserEmail implements ShouldQueue
         $details = [
             'greeting' => 'Hi '.$this->data->name,
             'body' => 'This notification is for you email verification',
-            'thanks' => 'Thank you for using DUMMY WEB',
+            'thanks' => 'Thank you for using Simple Web Application',
             'actionText' => 'Click to verify',
             'actionURL' => url('verify-user/'.$verifyToken),
             'order_id' => 90

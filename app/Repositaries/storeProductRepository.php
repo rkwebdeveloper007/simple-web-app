@@ -6,11 +6,13 @@ use App\Model\Product;
 use DB;
 
 class storeProductRepository {
-
+    /**
+     * Store product
+     * image name as upc (unique product code)
+     */
     public function store($request){
         try {
 
-            //image name as upc unique product code
             $image = $request['upc'].'.'.$request['image']->extension();  
             $request['image']->move(public_path('admin/images/product_images'), $image);
 
@@ -29,7 +31,9 @@ class storeProductRepository {
         } 
     }
 
-
+    /**
+     * All products
+     */
     public function all(){
         try {
 
@@ -40,6 +44,9 @@ class storeProductRepository {
         } 
     }
 
+    /**
+     * Deleted selected ids products
+     */
     public function selectedDelete($ids){
         try {
 
@@ -53,6 +60,10 @@ class storeProductRepository {
         }
     }
 
+     /**
+     * Deleted specific id product
+     * Note: we can unlink product images while updating product
+     */
     public function delete($id){
         try {
 
@@ -66,7 +77,10 @@ class storeProductRepository {
         }
     }
 
-
+    /**
+     * Update Product
+     * Note: we can unlink product images while updating product
+     */
     public function update($request){
         try {
             if($request->hasFile('image')){

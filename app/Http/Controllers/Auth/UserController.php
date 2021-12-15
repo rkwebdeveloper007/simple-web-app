@@ -14,6 +14,11 @@ use Auth;
 
 class UserController extends Controller
 {
+     /**
+     * Create a service instance.
+     *
+     * @return void
+     */
     private $userLoginService;
 
     public function __construct(UserLoginService $userLoginService){
@@ -22,11 +27,16 @@ class UserController extends Controller
 
     }
 
+     
     public function register(){
 
         return view('admin.register');
         
     }
+
+    /**
+     * Create a new User
+     */
     public function userRegister(StoreRegisterRequest $request){
 
        return User::register($request);
@@ -39,6 +49,9 @@ class UserController extends Controller
         return view('admin.login');
     }
 
+    /**
+     * if user is valid then accept login
+     */
     public function userLogin(checkLoginRequest $request){
 
         return $this->userLoginService->login($request->all());
@@ -57,6 +70,9 @@ class UserController extends Controller
 
     }
 
+     /**
+     * Email Notification to verify user's Account
+     */
     public function emailNotification(Request $request){
      
        $userData = User::select('id','email','name')
@@ -70,6 +86,11 @@ class UserController extends Controller
         
     }
 
+     /**
+     * Verify user's account if it's valid then reset password
+     *
+     * @return void
+     */
     public function verifyUserToken($token){
         
         $user = User::select('id','email','name')
