@@ -47,7 +47,7 @@ class VerifyUserEmail implements ShouldQueue
             'body' => 'This notification is for you email verification',
             'thanks' => 'Thank you for using DUMMY WEB',
             'actionText' => 'Click to verify',
-            'actionURL' => url('account-modification/'.$verifyToken),
+            'actionURL' => url('verify-user/'.$verifyToken),
             'order_id' => 90
 
         ];

@@ -45,13 +45,19 @@ class UserController extends Controller
        
     }
 
-    public function verifyEmail(Request $request){
+    public function logout(){
 
-        return view('admin.reset-password');
+        return $this->userLoginService->logout();
+       
+    }
+
+    public function verifyEmail(){
+
+        return view('admin.verify-email');
 
     }
 
-    public function resetPassword(Request $request){
+    public function emailNotification(Request $request){
      
        $userData = User::select('id','email','name')
                         ->where('email',$request->email)->first();
@@ -59,8 +65,30 @@ class UserController extends Controller
             dispatch(new VerifyUserEmail($userData));
             return redirect('login')->with('status', 'Email sent successfully');
        } else{
-        return redirect('register')->with('status', 'you are not registered');
+            return redirect('register')->with('status', 'you are not registered');
        }
         
+    }
+
+    public function verifyUserToken($token){
+        
+        $user = User::select('id','email','name')
+                    ->where('remember_token',$token)->first();    
+                            
+        if(!$user){
+            return redirect()->route('verifyEmail')->with(['error'=>'Something went wrong,Please try again']); 
+        }
+        return view(
+            'admin.reset-password',
+            [
+                'data' => $user
+            ]
+        );
+    }
+
+    public function resetPassword(Request $request){
+
+        return User::updateAccount($request);
+
     }
 }

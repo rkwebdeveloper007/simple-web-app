@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Dummy Web</title>
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/css/app.css')}}">
@@ -19,11 +20,14 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
    
+     
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+        <a  href="{{route('admin.logout')}}" >
+          <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
+
+      
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -111,3 +115,4 @@
 <script src="https://kit.fontawesome.com/5a48532541.js" crossorigin="anonymous"></script>
 </body>
 </html>
+

@@ -10,15 +10,20 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href=""><b>Lo</b>go</a>
+    <a href=""><b>Lo</b>gin</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new user</p>
-      @if (session('status'))
+      <p class="login-box-msg">Login</p>
+      @if (session('error'))
+          <div class="alert alert-danger">
+              {{ session('error') }}
+          </div>
+      @endif
+      @if (session('success'))
           <div class="alert alert-success">
-              {{ session('status') }}
+              {{ session('success') }}
           </div>
       @endif
       <form method="post" action="{{ route('userLogin') }}" >

@@ -11,11 +11,15 @@ class UserLoginService {
             'email' => $request['email'],
             'password' => $request['password']
             ])) {
-            $user = Auth()->user();
-                return response()->json(['success' => 'Successfully Logged In']);
+            return redirect()->route('admin.dashboard');
         } else {
-            return response()->json(['error'=> 'Credential does not match']);
+            return redirect()->route('login')->with(['error'=>'Credential does not match']);
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login')->with(['success'=>'successfully logout']);
     }
 
 }
